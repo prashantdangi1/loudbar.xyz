@@ -18,7 +18,7 @@
  * -------------------------------------------------------------------------- */
 window.LOUDBAR_CONFIG = {
   // Paste your Polar checkout link here:
-  checkoutUrl: "",
+  checkoutUrl: "https://buy.polar.sh/polar_cl_1GBD2dAHUA41mP5IJmCfTobE71YyJDD7Ka2sV2Y0gWr",
 
   // Polar customer portal (buyers use this to re-download later). Optional —
   // shown on the thank-you page if set. Usually: https://polar.sh/<org>/portal
