@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank you for buying LoudBar! 🔊</title>
+  <meta name="description" content="Thanks for your purchase — enjoy up to 200% amplification with LoudBar." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <canvas class="confetti" id="confetti"></canvas>
+
+  <main class="thanks">
+    <div class="container">
+      <img class="icon-big" src="assets/icon.png" alt="LoudBar icon" />
+      <h1>Thank you for buying <span class="grad">LoudBar!</span></h1>
+      <p class="lead">
+        You're all set — enjoy up to <b>200% amplification</b>, clean and crackle-free. 🎧<br />
+        Your download is ready below and a copy is on its way to your email.
+      </p>
+
+      <div class="hero-cta" style="justify-content:center; margin-bottom:14px;">
+        <a class="btn lg" id="downloadBtn" href="#" target="_blank" rel="noopener">⬇️ Download LoudBar.dmg</a>
+        <a class="btn lg ghost" id="portalBtn" href="#" target="_blank" rel="noopener" style="display:none;">My purchases</a>
+      </div>
+      <p class="hero-note" id="dlNote">
+        Can't find the download? Check the receipt email from Polar — your DMG link is in there too.
+      </p>
+
+      <div class="steps">
+        <div class="row">
+          <div class="num">1</div>
+          <p>Open the downloaded <b>LoudBar.dmg</b> and drag <b>LoudBar</b> into your <b>Applications</b> folder.</p>
+        </div>
+        <div class="row">
+          <div class="num">2</div>
+          <p>First launch: <b>right-click LoudBar → Open</b>, then click <b>Open</b> again.
+            <span>LoudBar isn't notarized by Apple yet, so this one-time step tells macOS you trust it. (You can also allow it from <b>System Settings → Privacy &amp; Security → Open Anyway</b>.)</span>
+          </p>
+        </div>
+        <div class="row">
+          <div class="num">3</div>
+          <p>Click the <b>LoudBar icon in your menu bar</b>, grant the one-time audio permission, and drag the slider past 100%. 🔊
+            <span>That's it — turn it up.</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="hero-note">
+        Questions or trouble? Just reply to your Polar receipt email and we'll help you out.
+      </p>
+      <p style="margin-top:22px;"><a href="index.html" style="color:var(--muted);">← Back to loudbar.xyz</a></p>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      var cfg = window.LOUDBAR_CONFIG || {};
+      // Polar appends download/order info to the success URL; if you host the DMG
+      // link directly you can also pass it as ?dl=... . Prefer Polar's gated link.
+      var params = new URLSearchParams(location.search);
+      var dl = params.get('dl');
+
+      var dlBtn = document.getElementById('downloadBtn');
+      if (dl) {
+        dlBtn.setAttribute('href', dl);
+      } else {
+        // No direct link present — point users at their Polar purchase/email.
+        dlBtn.setAttribute('href', cfg.portalUrl || '#');
+        if (!cfg.portalUrl) {
+          document.getElementById('dlNote').innerHTML =
+            'Your LoudBar download link was sent to your email by Polar — open it to grab the DMG.';
+          dlBtn.textContent = '⬇️ Get my download (check email)';
+        }
+      }
+
+      if (cfg.portalUrl) {
+        var pb = document.getElementById('portalBtn');
+        pb.style.display = '';
+        pb.setAttribute('href', cfg.portalUrl);
+      }
+    })();
+
+    // --- lightweight confetti burst ---
+    (function () {
+      var c = document.getElementById('confetti'), ctx = c.getContext('2d');
+      function size(){ c.width = innerWidth; c.height = innerHeight; }
+      size(); addEventListener('resize', size);
+      var colors = ['#ffa028','#f56712','#ff8a3d','#ffd089','#ffffff'];
+      var P = [];
+      for (var i=0;i<140;i++){
+        P.push({
+          x: Math.random()*c.width, y: -20 - Math.random()*c.height,
+          r: 4+Math.random()*6, c: colors[i%colors.length],
+          vy: 2+Math.random()*3, vx: -1.5+Math.random()*3,
+          a: Math.random()*Math.PI, va: -.1+Math.random()*.2
+        });
+      }
+      var t0 = Date.now();
+      (function loop(){
+        ctx.clearRect(0,0,c.width,c.height);
+        P.forEach(function(p){
+          p.y += p.vy; p.x += p.vx; p.a += p.va;
+          ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a);
+          ctx.fillStyle = p.c; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
+          ctx.restore();
+          if (p.y > c.height+20){ p.y = -20; p.x = Math.random()*c.width; }
+        });
+        // fade confetti out after ~5s
+        if (Date.now()-t0 < 5200) requestAnimationFrame(loop);
+        else ctx.clearRect(0,0,c.width,c.height);
+      })();
+    })();
+  </script>
+</body>
+</html>

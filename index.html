@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoudBar — Make your Mac louder than 100%</title>
+  <meta name="description" content="LoudBar is a tiny macOS menu-bar app that amplifies your Mac's volume up to 200% — clean, real-time boost with no kernel driver, no sudo, no reboot." />
+
+  <!-- Open Graph / social -->
+  <meta property="og:title" content="LoudBar — Make your Mac louder than 100%" />
+  <meta property="og:description" content="Amplify your Mac up to 200%. Clean, real-time boost. No driver, no sudo, no reboot. $9 one-time." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://loudbar.xyz" />
+  <meta property="og:image" content="https://loudbar.xyz/assets/icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon-256.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a class="brand" href="#top">
+        <img src="assets/icon.png" alt="LoudBar icon" />
+        LoudBar
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn buy" href="#pricing">Get LoudBar — $9</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <span class="badge"><span class="dot"></span> 90% off for the first 100 users</span>
+      <h1>Your Mac, <span class="grad">louder than 100%.</span></h1>
+      <p class="sub">
+        LoudBar is a tiny menu-bar app that amplifies your system audio up to <b>200%</b> —
+        clean, real-time boost with a smart limiter. No kernel driver, no sudo, no reboot.
+      </p>
+      <div class="hero-cta">
+        <a class="btn lg buy" href="#pricing">🔊 Get LoudBar — $9</a>
+        <a class="btn lg ghost" href="#how">See how it works</a>
+      </div>
+      <p class="hero-note">One-time payment · macOS 14.4+ · Apple Silicon &amp; Intel</p>
+
+      <div class="waves" aria-hidden="true">
+        <span class="arc"></span>
+        <span class="arc"></span>
+        <span class="arc"></span>
+        <span class="speaker"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Why LoudBar</div>
+        <h2>Loud <em>and</em> clear.</h2>
+        <p>Most volume hacks crackle, collapse to mono, or need a sketchy driver. LoudBar doesn't.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="ico">🔊</div>
+          <h3>Up to 200% volume</h3>
+          <p>Push quiet videos, calls, and games well past the system maximum — right from the menu bar.</p>
+        </div>
+        <div class="card">
+          <div class="ico">✨</div>
+          <h3>No distortion</h3>
+          <p>A smooth soft-limiter (tanh) tames peaks, so you get more loudness without the crackle.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🛡️</div>
+          <h3>No driver, no sudo</h3>
+          <p>Runs entirely in-process using Core Audio. Nothing to install in the kernel. No reboot.</p>
+        </div>
+        <div class="card">
+          <div class="ico">⚡</div>
+          <h3>Real-time &amp; in-sync</h3>
+          <p>A single synchronized audio clock means zero drift — no echo, no lag, no mono collapse.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🎚️</div>
+          <h3>One simple slider</h3>
+          <p>Drag to boost, flip the switch to toggle. That's the whole interface. It just works.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🪶</div>
+          <h3>Featherweight</h3>
+          <p>A native Swift menu-bar app that sips resources and stays out of your way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Under the hood</div>
+        <h2>How it works</h2>
+        <p>LoudBar taps system audio in-process, applies gain with a limiter, and renders it back on one clock.</p>
+      </div>
+      <div class="flow">
+        <div class="step">
+          <div class="n">STEP 1</div>
+          <h4>Tap the audio</h4>
+          <p>A Core Audio process tap captures system output in-process.</p>
+        </div>
+        <div class="step">
+          <div class="n">STEP 2</div>
+          <h4>One clock</h4>
+          <p>A private aggregate device binds the tap + your speakers to a single clock.</p>
+        </div>
+        <div class="step">
+          <div class="n">STEP 3</div>
+          <h4>Boost + limit</h4>
+          <p>A realtime IOProc applies gain and a tanh soft-limit in Float32 stereo.</p>
+        </div>
+        <div class="step">
+          <div class="n">STEP 4</div>
+          <h4>Play it back</h4>
+          <p>The amplified, clean signal goes straight to your Mac speakers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Simple pricing</div>
+        <h2>Buy once. Boost forever.</h2>
+        <p>No subscription, no account. Pay, download, done.</p>
+      </div>
+      <div class="price-wrap">
+        <div class="price-card">
+          <div class="brand" style="justify-content:center;">
+            <img src="assets/icon.png" alt="" style="width:40px;height:40px;border-radius:10px;box-shadow:var(--glow);" />
+          </div>
+          <div class="launch">🔥 Launch deal — 90% off for the first 100 users</div>
+          <div class="price-tag">
+            <span class="cur">$</span>
+            <span class="now">9</span>
+            <span class="was">$90</span>
+          </div>
+          <div class="once">One-time payment · lifetime use</div>
+          <ul class="price-list">
+            <li><span class="check">✓</span> Amplify up to 200% volume</li>
+            <li><span class="check">✓</span> Clean soft-limiter, no crackle</li>
+            <li><span class="check">✓</span> No driver, no sudo, no reboot</li>
+            <li><span class="check">✓</span> Free updates for v2.x</li>
+            <li><span class="check">✓</span> Secure checkout via Polar</li>
+          </ul>
+          <a class="btn lg buy" href="#">Get LoudBar now →</a>
+          <p class="fine">Instant download after payment · macOS 14.4+</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTICE -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="notice">
+        <div class="ico">⚠️</div>
+        <div>
+          <h4>Heads up: not yet notarized by Apple</h4>
+          <p>
+            LoudBar is an indie app and isn't notarized yet, so on first launch macOS may say it
+            "cannot be opened." Just <b>right-click the app → Open</b> (or go to
+            <code>System Settings → Privacy &amp; Security → Open Anyway</code>). The full steps are on
+            your thank-you page after purchase.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Questions</div>
+        <h2>FAQ</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>How loud does it actually get?</summary>
+          <p>Up to ~200% of your system's normal maximum. The built-in soft-limiter keeps it clean as you push higher, so you gain real loudness without the distortion you'd get from naive amplification.</p>
+        </details>
+        <details>
+          <summary>Does it need a kernel extension or admin password?</summary>
+          <p>No. LoudBar runs entirely in user space using Core Audio's process-tap API. There's no kernel driver, no <code>sudo</code>, and no reboot. You'll grant a one-time audio permission on first boost.</p>
+        </details>
+        <details>
+          <summary>What are the system requirements?</summary>
+          <p>macOS 14.4 (Sonoma) or later — that's the floor for the process-tap API. Works on both Apple Silicon and Intel Macs.</p>
+        </details>
+        <details>
+          <summary>Why does macOS warn me when I open it?</summary>
+          <p>The app isn't notarized by Apple yet. It's safe — it's just unsigned by a paid Developer ID. Right-click the app and choose <b>Open</b>, or allow it from <b>System Settings → Privacy &amp; Security</b>. Step-by-step instructions are on the thank-you page.</p>
+        </details>
+        <details>
+          <summary>How do I get the download after paying?</summary>
+          <p>Checkout is handled securely by Polar. The moment your payment goes through you'll get the LoudBar DMG — both on the thank-you page and by email, with access to your purchase any time via Polar's customer portal.</p>
+        </details>
+        <details>
+          <summary>Is this a subscription?</summary>
+          <p>No. It's a single $9 one-time payment for lifetime use, including free updates across the v2.x line.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <a class="brand" href="#top"><img src="assets/favicon-32.png" alt="" style="width:24px;height:24px;border-radius:6px;" /> LoudBar</a>
+      <p>© <span id="year"></span> LoudBar · <a href="#pricing">Buy</a> · <a href="#faq">FAQ</a></p>
+      <p>Made for macOS 🎧</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Wire every "buy" link to the Polar checkout from config.js
+    (function () {
+      var url = (window.LOUDBAR_CONFIG && window.LOUDBAR_CONFIG.checkoutUrl) || '';
+      document.querySelectorAll('a.buy').forEach(function (a) {
+        if (a.getAttribute('href') === '#pricing') return; // keep in-page scroll links
+        if (url) {
+          a.setAttribute('href', url);
+        } else {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('Checkout link not configured yet. Set checkoutUrl in config.js.');
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
